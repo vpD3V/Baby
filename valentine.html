@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .phone-frame {
+            width: 100%;
+            max-width: 375px;
+            height: auto;
+            background: white;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #ffe5ec 0%, #fff0f5 100%);
+            padding-top: 20px;
+            scroll-behavior: smooth;
+        }
+
+        .screen::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .screen::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .screen::-webkit-scrollbar-thumb {
+            background: #ff69b4;
+            border-radius: 3px;
+        }
+
+        .status-bar {
+            padding: 15px 20px 10px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(255, 105, 180, 0.1) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(255, 20, 147, 0.15);
+        }
+
+        .time {
+            font-size: 13px;
+            color: #ff1493;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .date {
+            font-size: 12px;
+            color: #ff69b4;
+        }
+
+        .heart-animation {
+            font-size: 40px;
+            animation: float 3s ease-in-out infinite;
+            margin: 10px 0;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .title {
+            text-align: center;
+            padding: 0 20px 20px;
+        }
+
+        .title h1 {
+            font-size: 32px;
+            color: #ff1493;
+            margin-bottom: 8px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(255, 20, 147, 0.1);
+        }
+
+        .title p {
+            font-size: 15px;
+            color: #ff69b4;
+            font-style: italic;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .message-container {
+            padding: 0 15px 40px;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, #fff9fc 0%, #ffebf5 100%);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.25);
+            line-height: 1.9;
+            color: #2c2c2c;
+            font-size: 15px;
+            border-left: 5px solid #ff1493;
+            border-right: 2px solid rgba(255, 105, 180, 0.3);
+            border-top: 2px solid rgba(255, 105, 180, 0.2);
+            border-bottom: 2px solid rgba(255, 105, 180, 0.2);
+            position: relative;
+        }
+
+        .message-card::before {
+            content: '💌';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+        }
+
+        .message-card::after {
+            content: '💌';
+            position: absolute;
+            bottom: -15px;
+            right: 20px;
+            font-size: 30px;
+        }
+
+        .message-text {
+            margin-bottom: 20px;
+            text-align: justify;
+            letter-spacing: 0.3px;
+            color: #333;
+        }
+
+        .message-text:first-child {
+            font-size: 17px;
+            color: #ff1493;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .message-text:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #ff1493;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .decoration {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            letter-spacing: 12px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 13px;
+            color: #ff69b4;
+            font-weight: 500;
+            border-top: 2px solid rgba(255, 20, 147, 0.2);
+            margin-top: 20px;
+        }
+
+        /* Envelope Styles */
+        .envelope-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(180deg, #ffe5ec 0%, #fff0f5 100%);
+            padding: 20px;
+        }
+
+        .envelope {
+            width: 340px;
+            height: 220px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 8px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .envelope:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.35),
+                0 0 0 1px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffc0e0 0%, #ffb3d9 100%);
+            top: 0;
+            left: 0;
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: bottom;
+            box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .envelope.opened .envelope-front {
+            transform: rotateX(-180deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, #f0f0f0 0%, #ddd 100%);
+            clip-path: polygon(0 0, 50% 60%, 100% 0);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: top center;
+            box-shadow: 
+                inset 0 2px 3px rgba(255, 255, 255, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .envelope.opened .envelope-flap {
+            transform: rotateX(180deg) translateZ(20px);
+        }
+
+        .envelope-heart {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 70px;
+            z-index: 20;
+            animation: heartBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(255, 20, 147, 0.4));
+        }
+
+        .click-text {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        .click-text p {
+            font-size: 18px;
+            color: #ff1493;
+            font-weight: 700;
+            margin-bottom: 12px;
+            animation: bounce 1.5s ease-in-out infinite;
+            letter-spacing: 1px;
+        }
+
+        .click-text span {
+            font-size: 45px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes heartBounce {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            25% {
+                transform: translateX(-50%) scale(1.1);
+            }
+            50% {
+                transform: translateX(-50%) scale(0.95);
+            }
+        }
+
+        /* Message Content Styles */
+        .message-content {
+            display: none;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        .message-content.show {
+            display: block;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .initial-state {
+            display: flex;
+        }
+
+        .initial-state.hidden {
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0;
+            }
+
+            .phone-frame {
+                width: 100%;
+                max-width: 100%;
+                min-height: 100vh;
+            }
+
+            .screen {
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="screen">
+            <!-- Envelope Section -->
+            <div class="envelope-container initial-state" id="envelopeSection">
+                <div class="envelope" id="envelopeBox">
+                    <div class="envelope-back"></div>
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-front">
+                        <div class="click-text">
+                            <p>💌 Click Me 💌</p>
+                            <span>💕</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Content -->
+            <div class="message-content" id="messageContent">
+                <div class="status-bar">
+                    <div class="time" id="time"></div>
+                    <div class="date">February 14, 2026</div>
+                </div>
+
+                <div class="heart-animation">💕</div>
+
+                <div class="title">
+                    <h1>Happy Valentine's Day</h1>
+                    <p>A Special Message For You</p>
+                </div>
+
+                <div class="decoration">💌 ✨ 💖</div>
+
+                <div class="message-container">
+                    <div class="message-card">
+                        <div class="message-text">
+                            Happy Valentine's Day, babyyyyyyy ❤️
+                        </div>
+
+                        <div class="message-text">
+                            I just want to start by saying I'm sorry that we're not able to go out and celebrate together today. I know it would have been nice to spend this day side by side, but even if we're not physically together, please know that my heart is always with you. No distance or situation can ever change how much you mean to me.
+                        </div>
+
+                        <div class="message-text">
+                            I am so grateful for the love that you continue to give me every single day. Thank you for your patience, your understanding, your kindness, and for choosing to stay. You make my life brighter in ways you probably don't even realize. Your love gives me comfort, strength, and motivation to become a better person.
+                        </div>
+
+                        <div class="message-text">
+                            I truly hope we continue to grow together and that our relationship lasts for a long, long time. I pray that we stay strong no matter what challenges come our way. I want us to be together through every moment of happiness and every season of struggle. I want us to support each other in our lowest days and celebrate together in our greatest victories.
+                        </div>
+
+                        <div class="message-text">
+                            I want you to be the one I stand beside when we chase our dreams, when we work hard for our goals, and when we finally win in life. I want us to look back one day and say, "We made it together."
+                        </div>
+
+                        <div class="message-text">
+                            No matter what happens, I will continue choosing you. Today and always. I love you more than words can explain. Happy Valentine's Day 🤍
+                        </div>
+
+                        <div class="signature">
+                            Forever yours with all my love 💕
+                        </div>
+                    </div>
+                </div>
+
+                <div class="decoration">💖 ✨ 💌</div>
+
+                <div class="footer">
+                    Made with ❤️ for you on Valentine's Day
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.getElementById('time');
+            if(timeElement) {
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                timeElement.textContent = `${hours}:${minutes}`;
+            }
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // Envelope functionality
+        const envelopeBox = document.getElementById('envelopeBox');
+        if(envelopeBox) {
+            envelopeBox.addEventListener('click', function() {
+                this.classList.add('opened');
+                
+                setTimeout(() => {
+                    document.getElementById('envelopeSection').classList.add('hidden');
+                    document.getElementById('messageContent').classList.add('show');
+                }, 400);
+            });
+        }
+
+        // Add floating hearts on click
+        document.addEventListener('click', function(e) {
+            if(e.target.closest('.envelope')) return;
+            
+            const heart = document.createElement('div');
+            heart.textContent = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = e.clientX + 'px';
+            heart.style.top = e.clientY + 'px';
+            heart.style.fontSize = '30px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '9999';
+            
+            document.body.appendChild(heart);
+
+            const keyframes = `
+                @keyframes floatUp {
+                    0% {
+                        opacity: 1;
+                        transform: translateY(0) translateX(0);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translateY(-100px) translateX(${Math.random() * 100 - 50}px);
+                    }
+                }
+            `;
+            
+            if(!document.getElementById('floatAnimation')) {
+                const style = document.createElement('style');
+                style.id = 'floatAnimation';
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+            }
+            
+            heart.style.animation = 'floatUp 2s ease-out forwards';
+
+            setTimeout(() => heart.remove(), 2000);
+        });
+    </script>
+</body>
+</html>
